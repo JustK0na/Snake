@@ -6,6 +6,11 @@
 },
 {
   "directory": "C:/Users/Admin/CLionProjects/Snake/cmake-build-debug",
+  "command": "g++ -isystem C:/Users/Admin/SFML-2.5.1/include -isystem C:/mingw32/lib/gcc/i686-w64-mingw32/7.3.0/include/c++ -isystem C:/mingw32/lib/gcc/i686-w64-mingw32/7.3.0/include/c++/i686-w64-mingw32 -isystem C:/mingw32/lib/gcc/i686-w64-mingw32/7.3.0/include/c++/backward -isystem C:/mingw32/lib/gcc/i686-w64-mingw32/7.3.0/include -isystem C:/mingw32/lib/gcc/i686-w64-mingw32/7.3.0/include-fixed -isystem C:/mingw32/i686-w64-mingw32/include -g -O0 -fdiagnostics-color=always -Wall -Wextra -pedantic -Werror=return-type -Werror=parentheses -Werror=vla -Werror=array-bounds -Wcast-qual -Wmaybe-uninitialized -std=gnu++14 -o CMakeFiles\\Snake.dir\\src\\Controller.cpp.obj -c C:\\Users\\Admin\\CLionProjects\\Snake\\src\\Controller.cpp",
+  "file": "C:\\Users\\Admin\\CLionProjects\\Snake\\src\\Controller.cpp"
+},
+{
+  "directory": "C:/Users/Admin/CLionProjects/Snake/cmake-build-debug",
   "command": "g++ -isystem C:/Users/Admin/SFML-2.5.1/include -isystem C:/mingw32/lib/gcc/i686-w64-mingw32/7.3.0/include/c++ -isystem C:/mingw32/lib/gcc/i686-w64-mingw32/7.3.0/include/c++/i686-w64-mingw32 -isystem C:/mingw32/lib/gcc/i686-w64-mingw32/7.3.0/include/c++/backward -isystem C:/mingw32/lib/gcc/i686-w64-mingw32/7.3.0/include -isystem C:/mingw32/lib/gcc/i686-w64-mingw32/7.3.0/include-fixed -isystem C:/mingw32/i686-w64-mingw32/include -g -O0 -fdiagnostics-color=always -Wall -Wextra -pedantic -Werror=return-type -Werror=parentheses -Werror=vla -Werror=array-bounds -Wcast-qual -Wmaybe-uninitialized -std=gnu++14 -o CMakeFiles\\Snake.dir\\src\\main.cpp.obj -c C:\\Users\\Admin\\CLionProjects\\Snake\\src\\main.cpp",
   "file": "C:\\Users\\Admin\\CLionProjects\\Snake\\src\\main.cpp"
 }

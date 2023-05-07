@@ -22,6 +22,7 @@ int main() {
             if (event.type == sf::Event::Closed)
                 win.close();
         }
+
     }
 
     return 0;

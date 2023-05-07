@@ -6,6 +6,7 @@ cmake_policy(SET CMP0009 NEW)
 file(GLOB NEW_GLOB LIST_DIRECTORIES true "C:/Users/Admin/CLionProjects/Snake/src/*.cpp")
 set(OLD_GLOB
   "C:/Users/Admin/CLionProjects/Snake/src/Board.cpp"
+  "C:/Users/Admin/CLionProjects/Snake/src/Controller.cpp"
   "C:/Users/Admin/CLionProjects/Snake/src/main.cpp"
   )
 if(NOT "${NEW_GLOB}" STREQUAL "${OLD_GLOB}")
