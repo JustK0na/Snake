@@ -1,0 +1,6 @@
+# ninja log v5
+2	132	7051729254287087	build.ninja	298bdba731863d15
+0	17	0	C:/Users/Admin/CLionProjects/Snake/cmake-build-debug/CMakeFiles/cmake.verify_globs	5add41f1d3c33607
+1	226	7051729257305941	CMakeFiles/Snake.dir/src/main.cpp.obj	fef80fad4a17aac7
+227	320	7051729258207547	Snake.exe	4df0a48084d82595
+0	16	0	C:/Users/Admin/CLionProjects/Snake/cmake-build-debug/CMakeFiles/cmake.verify_globs	5add41f1d3c33607
