@@ -1,6 +1,7 @@
 # ninja log v5
-2	132	7052017673703884	build.ninja	298bdba731863d15
-2	1435	7052016916886603	CMakeFiles/Snake.dir/src/main.cpp.obj	fef80fad4a17aac7
-1	17	0	C:/Users/Admin/CLionProjects/Snake/cmake-build-debug/CMakeFiles/cmake.verify_globs	5add41f1d3c33607
-1435	1622	7052016918730660	Snake.exe	d4a55f80a89dee8d
+2	132	7052049003848595	build.ninja	298bdba731863d15
+5	332	7052046025104821	CMakeFiles/Snake.dir/src/main.cpp.obj	fef80fad4a17aac7
+0	15	0	C:/Users/Admin/CLionProjects/Snake/cmake-build-debug/CMakeFiles/cmake.verify_globs	5add41f1d3c33607
+338	413	7052046025868267	Snake.exe	5653a31c0d0af028
 2	43	7051823536530810	CMakeFiles/Snake.dir/src/Board.cpp.obj	54248f589ee0d6dc
+2	43	7052046022224843	CMakeFiles/Snake.dir/src/Controller.cpp.obj	e3fd3f907a03052e
