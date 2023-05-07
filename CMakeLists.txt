@@ -38,7 +38,7 @@ add_compile_options ( -Wmaybe-uninitialized )
 find_package(SFML 2.5 COMPONENTS graphics audio REQUIRED)
 
 file(GLOB SRC CONFIGURE_DEPENDS src/*.cpp)
-add_executable(Snake ${SRC})
+add_executable(Snake ${SRC} src/Board.cpp src/Board.h)
 
 ##add_executable(Minesweeper.cpp ${SRC})
 ##add_executable(MSBoardTextView.cpp ${SRC})
