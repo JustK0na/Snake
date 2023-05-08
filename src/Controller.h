@@ -5,9 +5,9 @@
 #ifndef SNAKE_CONTROLLER_H
 #define SNAKE_CONTROLLER_H
 
-#define FRAMERATE 15.0f
-#define WIELNAPOLE 30.0f
-#define VELOCITY  ((WIELNAPOLE/FRAMERATE)/4)
+#define FRAMERATE 15
+#define WIELNAPOLE 30
+
 
 #include "Board.h"
 #include "Snake.h"
@@ -16,6 +16,7 @@
 #include <SFML/Window/VideoMode.hpp>
 #include <SFML/Window/Event.hpp>
 #include <iostream>
+#include <cmath>
 class Controller {
 
     Board &b;

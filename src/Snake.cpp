@@ -3,9 +3,8 @@
 //
 
 #include "Snake.h"
-#define  VELOCITY 30
 
-Snake::Snake(int x, int y):posX(x), posY(y)
+Snake::Snake(float x, float y):posX(x), posY(y)
 {
     dir = RIGHT;
 }
@@ -39,8 +38,8 @@ void Snake::changeDirection(char key)
     }
 }
 
-std::vector<int> Snake::getPosition() const
+std::vector<float> Snake::getPosition() const
 {
-    std::vector<int> tab{posX, posY};
+    std::vector<float> tab{posX, posY};
     return tab;
 }

@@ -8,6 +8,7 @@ Controller::Controller(Board &board, Snake &snake):b(board),s(snake)
 {}
 
 void Controller::movementChange(sf::Event &event) {
+
     switch (event.key.code) {
         case sf::Keyboard::W:
             s.changeDirection('w');
@@ -24,13 +25,18 @@ void Controller::movementChange(sf::Event &event) {
         default:
             break;
 
-        
+
     }
 }
 void Controller::movement(direction dir)
 {
-    switch (dir) {
-        case UP:
+    float wielnapole=WIELNAPOLE;
+    float framerate = FRAMERATE;
+    float VELOCITY = 1;//((wielnapole/framerate)/5);
+
+              //Wolno zakręcać tylko wtedy gdy waz jest na całkowitym polu
+     switch (dir) {
+          case UP:
             s.changeY((-VELOCITY));
             break;
         case DOWN:
@@ -42,8 +48,10 @@ void Controller::movement(direction dir)
         case RIGHT:
             s.changeX(VELOCITY);
             break;
+
+
     }
-    std::cout<<"\nwasz X: "<<s.getPosition()[0]<<"\twasz Y: "<<s.getPosition()[1]<<"\tVelocity: "<<-VELOCITY;
+    std::cout<<"\nwasz X: "<<s.getPosition()[0]<<"\twasz Y: "<<s.getPosition()[1]<<"\tVelocity: "<<VELOCITY;
 }
 void Controller::control(sf::RenderWindow &win)
 {
@@ -57,6 +65,8 @@ void Controller::control(sf::RenderWindow &win)
                 break;
             case sf::Event::KeyPressed:
                 movementChange(event);
+                break;
+
             default:
                 break;
         }

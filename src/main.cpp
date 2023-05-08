@@ -10,7 +10,7 @@
 #define WIELPOLE 30
 #define MARGINES 20
 #define  GUI 200
-#define FRAMERATE 15
+#define FRAMERATE 5
 
 #define SIZE 25
 int main() {

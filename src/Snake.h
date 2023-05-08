@@ -16,13 +16,13 @@ enum direction{
 
 
 class Snake {
-    int posX;
-    int posY;
+    float posX;
+    float posY;
     direction dir;
 
 public:
-    Snake(int x, int y);
-    std::vector<int> getPosition() const;
+    Snake(float x, float y);
+    std::vector<float> getPosition() const;
     direction getDirection() const;
     void changeDirection(char key);
     void changeX(float x);
