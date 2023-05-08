@@ -4,17 +4,21 @@
 
 #ifndef SNAKE_BOARD_H
 #define SNAKE_BOARD_H
+#include <vector>
 
+
+#define WIELPOLE 30
 
 class Board {
-   int width;
-   int height;
+   int col;
+   int row;
+   //std::vector<std::vector<int>> tab;
 
 
 public:
     Board(int width, int height);
-    int getWidth() const;
-    int getHeight() const;
+    int getCols() const;
+    int getRows() const;
 };
 
 

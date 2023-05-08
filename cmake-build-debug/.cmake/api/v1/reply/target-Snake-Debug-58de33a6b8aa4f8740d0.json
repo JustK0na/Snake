@@ -307,13 +307,13 @@
 		{
 			"backtrace" : 1,
 			"compileGroupIndex" : 0,
-			"path" : "src/Draw.cpp",
+			"path" : "src/Snake.cpp",
 			"sourceGroupIndex" : 0
 		},
 		{
 			"backtrace" : 1,
 			"compileGroupIndex" : 0,
-			"path" : "src/Snake.cpp",
+			"path" : "src/View.cpp",
 			"sourceGroupIndex" : 0
 		},
 		{
@@ -339,7 +339,7 @@
 		},
 		{
 			"backtrace" : 1,
-			"path" : "src/Draw.h",
+			"path" : "src/View.h",
 			"sourceGroupIndex" : 1
 		}
 	],

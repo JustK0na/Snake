@@ -3,26 +3,31 @@
 #include <SFML/Graphics/Color.hpp>
 #include <SFML/Window/VideoMode.hpp>
 #include <SFML/Window/Event.hpp>
-
 #include "Board.h"
+#include "View.h"
+#include "Controller.h"
+
+#define WIELPOLE 30
+#define MARGINES 20
+#define  GUI 200
+#define FRAMERATE 15
+
+#define SIZE 25
 int main() {
 
-    Board b(500, 700);
-    sf::RenderWindow win(sf::VideoMode(b.getWidth(), b.getHeight()), "Snake");
-    std::cout << "Hello, World!" << std::endl;
-    std::cout << "Width: " <<b.getWidth()<<"\tHeight: "<<b.getHeight();
+    Board b(SIZE, SIZE);
+    Snake s(SIZE/2,SIZE/2);
+    View scenery(b,s);
+    Controller controller(b, s);
+    sf::RenderWindow win(sf::VideoMode(2*MARGINES+b.getCols()*WIELPOLE, b.getRows()*WIELPOLE+MARGINES+GUI), "Snake");
+    std::cout << "\nColumns: " <<b.getCols()<<"\tRows: "<<b.getRows();
+    std::cout << "\nWidth: "<<b.getCols()*WIELPOLE <<"\tHeight: "<<b.getRows()*WIELPOLE ;
+    win.setFramerateLimit(FRAMERATE);
 
     while (win.isOpen())
     {
-        // check all the window's events that were triggered since the last iteration of the loop
-        sf::Event event;
-        while (win.pollEvent(event))
-        {
-            // "close requested" event: we close the window
-            if (event.type == sf::Event::Closed)
-                win.close();
-        }
-
+        controller.control(win);
+        scenery.present(win);
     }
 
     return 0;

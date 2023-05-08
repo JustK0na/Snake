@@ -7,8 +7,8 @@ file(GLOB NEW_GLOB LIST_DIRECTORIES true "C:/Users/Admin/CLionProjects/Snake/src
 set(OLD_GLOB
   "C:/Users/Admin/CLionProjects/Snake/src/Board.cpp"
   "C:/Users/Admin/CLionProjects/Snake/src/Controller.cpp"
-  "C:/Users/Admin/CLionProjects/Snake/src/Draw.cpp"
   "C:/Users/Admin/CLionProjects/Snake/src/Snake.cpp"
+  "C:/Users/Admin/CLionProjects/Snake/src/View.cpp"
   "C:/Users/Admin/CLionProjects/Snake/src/main.cpp"
   )
 if(NOT "${NEW_GLOB}" STREQUAL "${OLD_GLOB}")

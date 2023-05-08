@@ -5,17 +5,15 @@
 #include "Board.h"
 
 
-Board::Board(int thickness, int peak)
+Board::Board(int width, int height):col(width),row(height)
 {
-    width = thickness;
-    height = peak;
 }
 
-int Board::getHeight() const {
+int Board::getRows() const {
 
-    return height;
+    return row;
 }
-int Board::getWidth() const {
-    return width;
+int Board::getCols() const {
+    return col;
 }
 
