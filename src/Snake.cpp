@@ -4,7 +4,7 @@
 
 #include "Snake.h"
 
-Snake::Snake(float x, float y):posX(x), posY(y)
+Snake::Snake(int x, int y):posX(x), posY(y)
 {
     dir = RIGHT;
 }
@@ -38,8 +38,8 @@ void Snake::changeDirection(char key)
     }
 }
 
-std::vector<float> Snake::getPosition() const
+std::vector<int> Snake::getPosition() const
 {
-    std::vector<float> tab{posX, posY};
+    std::vector<int> tab{posX, posY};
     return tab;
 }

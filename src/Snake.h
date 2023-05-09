@@ -21,8 +21,8 @@ class Snake {
     direction dir;
 
 public:
-    Snake(float x, float y);
-    std::vector<float> getPosition() const;
+    Snake(int x, int y);
+    std::vector<int> getPosition() const;
     direction getDirection() const;
     void changeDirection(char key);
     void changeX(float x);

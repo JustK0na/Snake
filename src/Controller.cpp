@@ -32,9 +32,9 @@ void Controller::movement(direction dir)
 {
     float wielnapole=WIELNAPOLE;
     float framerate = FRAMERATE;
-    float VELOCITY = 1;//((wielnapole/framerate)/5);
+    float VELOCITY = ((wielnapole/5)/framerate);//
 
-              //Wolno zakręcać tylko wtedy gdy waz jest na całkowitym polu
+              //Wolno zakręcać tylko wtedy gdy waz jest na całkowitym polu,
      switch (dir) {
           case UP:
             s.changeY((-VELOCITY));
