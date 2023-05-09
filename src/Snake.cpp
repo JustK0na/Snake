@@ -38,6 +38,15 @@ void Snake::changeDirection(char key)
     }
 }
 
+bool Snake::outOfBoard() const{
+    if (getPosition()[0]<0||getPosition()[0]>(SIZE-1)||getPosition()[1]<0||getPosition()[1]>(SIZE-1))
+    {
+        return true;
+    }
+    return false;
+
+}
+
 std::vector<int> Snake::getPosition() const
 {
     std::vector<int> tab{posX, posY};

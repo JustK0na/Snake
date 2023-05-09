@@ -4,6 +4,9 @@
 
 #ifndef SNAKE_SNAKE_H
 #define SNAKE_SNAKE_H
+
+#define SIZE 25
+
 #include <vector>
 
 
@@ -27,6 +30,7 @@ public:
     void changeDirection(char key);
     void changeX(float x);
     void changeY(float y);
+    bool outOfBoard() const;
 };
 
 
