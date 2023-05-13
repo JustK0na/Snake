@@ -62,7 +62,7 @@ void Controller::movement(direction dir)
 
 
     }
-    std::cout<<"\nwasz X: "<<s.getHeadPosition()[0]<<"\twasz Y: "<<s.getHeadPosition()[1]<<"\tVelocity: "<<VELOCITY;
+    std::cout<<"\nwasz X: "<<s.getPosition(0)[0]<<"\twasz Y: "<<s.getPosition(0)[1]<<"\tVelocity: "<<VELOCITY;
 }
 
 void Controller::addPoint(sf::Event &event)

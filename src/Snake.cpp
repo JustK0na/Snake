@@ -76,9 +76,9 @@ SnakeBody::SnakeBody(int x, int y)
     body.front().posY=y;
     body.front().dir=RIGHT;
 }
-std::vector<int> SnakeBody::getHeadPosition() const
+std::vector<int> SnakeBody::getPosition(int i) const
 {
-    std::vector<int> tab{int(body.front().posX), int(body.front().posY)};
+    std::vector<int> tab{int(body[i].posX), int(body[i].posY)};
     return tab;
 }
 direction SnakeBody::getDirection() const
@@ -129,7 +129,7 @@ void SnakeBody::changeY(float y)
     body.front().posY=body.front().posY+y;
 }
 bool SnakeBody::outOfBoard() const{
-    if (getHeadPosition()[0]<0||getHeadPosition()[0]>(SIZE-1)||getHeadPosition()[1]<0||getHeadPosition()[1]>(SIZE-1))
+    if (getPosition(0)[0]<0||getPosition(0)[0]>(SIZE-1)||getPosition(0)[1]<0||getPosition(0)[1]>(SIZE-1))
     {
         return true;
     }

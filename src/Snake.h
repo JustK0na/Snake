@@ -43,7 +43,7 @@ class SnakeBody{
     std::vector<cell> body;
 public:
     SnakeBody(int x, int y);
-    std::vector<int> getHeadPosition() const;
+    std::vector<int> getPosition(int i) const;
     direction getDirection() const;
     int getSnakeSize() const;
     void changeDirection(char key);

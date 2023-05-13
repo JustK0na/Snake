@@ -25,11 +25,18 @@ void View::drawBackground(sf::RenderWindow &window) const
 }
 
 void View::drawSnake(sf::RenderWindow &window) const {
-    sf::RectangleShape rect(sf::Vector2f(WIELPOLE-2, WIELPOLE-2));
+    for(int i=0; i<s.getSnakeSize(); i++)
+    {
+       static sf::RectangleShape rect(sf::Vector2f(WIELPOLE-2, WIELPOLE-2));
+        rect.setPosition((WIELPOLE*s.getPosition(i)[0])+MARGINES, WIELPOLE*s.getPosition(i)[1]+GUI);
+        rect.setFillColor(sf::Color(73, 173, 26));
+        window.draw(rect);
+    }
+   // sf::RectangleShape rect(sf::Vector2f(WIELPOLE-2, WIELPOLE-2));
 
-    rect.setPosition((WIELPOLE*s.getHeadPosition()[0])+MARGINES, WIELPOLE*s.getHeadPosition()[1]+GUI);
-    rect.setFillColor(sf::Color(73, 173, 26));
-    window.draw(rect);
+    /*rect.setPosition((WIELPOLE*s.getHeadPosition()[0])+MARGINES, WIELPOLE*s.getHeadPosition()[1]+GUI);
+    rect.setFillColor(sf::Color(73, 173, 26));*/
+
 
 
 }
