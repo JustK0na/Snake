@@ -139,7 +139,9 @@ bool SnakeBody::outOfBoard() const{
 void  SnakeBody::snakeGrow()
 {
     cell bodyPart;
-
+    bodyPart.posX=body.front().posX;
+    bodyPart.posY=body.front().posY;
     body.push_back(bodyPart);
+
 
 }
