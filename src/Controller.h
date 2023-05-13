@@ -20,12 +20,13 @@
 class Controller {
 
     Board &b;
-    Snake &s;
+    SnakeBody &s;
 public:
-    Controller(Board &board, Snake &snake);
+    Controller(Board &board, SnakeBody &snake);
     void control(sf::RenderWindow &win);
     void movementChange(sf::Event &event);
     void movement(direction dir);
+    void addPoint(sf::Event &event);
 
 };
 

@@ -14,10 +14,10 @@
 #include "iostream"
 class View {
     Board &b;
-    Snake &s;
+    SnakeBody &s;
 
 public:
-    View(Board &b, Snake &s);
+    View(Board &b, SnakeBody &s);
     void present(sf::RenderWindow &window) const;
     void drawBackground(sf::RenderWindow &window) const;
     void drawSnake(sf::RenderWindow &window) const;

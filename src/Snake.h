@@ -10,6 +10,8 @@
 #include <vector>
 
 
+
+
 enum direction{
     UP,
     DOWN,
@@ -17,7 +19,11 @@ enum direction{
     RIGHT
 };
 
-
+struct cell{
+    float posX;
+    float posY;
+    direction dir;
+};
 class Snake {
     float posX;
     float posY;
@@ -31,6 +37,20 @@ public:
     void changeX(float x);
     void changeY(float y);
     bool outOfBoard() const;
+};
+
+class SnakeBody{
+    std::vector<cell> body;
+public:
+    SnakeBody(int x, int y);
+    std::vector<int> getHeadPosition() const;
+    direction getDirection() const;
+    int getSnakeSize() const;
+    void changeDirection(char key);
+    void changeX(float x);
+    void changeY(float y);
+    bool outOfBoard() const;
+    void snakeGrow() ;  //!!!!!!!!!!!!!!!!!!!!!!!!!
 };
 
 

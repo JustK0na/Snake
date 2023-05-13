@@ -8,7 +8,7 @@
 #define MARGINES 20
 #define  GUI 200
 
-View::View(Board &board, Snake &snake):b(board),s(snake)
+View::View(Board &board, SnakeBody &snake):b(board),s(snake)
 {}
 void View::drawBackground(sf::RenderWindow &window) const
 {
@@ -27,7 +27,7 @@ void View::drawBackground(sf::RenderWindow &window) const
 void View::drawSnake(sf::RenderWindow &window) const {
     sf::RectangleShape rect(sf::Vector2f(WIELPOLE-2, WIELPOLE-2));
 
-    rect.setPosition((WIELPOLE*s.getPosition()[0])+MARGINES, WIELPOLE*s.getPosition()[1]+GUI);
+    rect.setPosition((WIELPOLE*s.getHeadPosition()[0])+MARGINES, WIELPOLE*s.getHeadPosition()[1]+GUI);
     rect.setFillColor(sf::Color(73, 173, 26));
     window.draw(rect);
 
