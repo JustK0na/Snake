@@ -5,8 +5,7 @@
 #include "View.h"
 
 #define WIELPOLE 30
-#define MARGINES 20
-#define  GUI 200
+
 
 View::View(Board &board, SnakeBody &snake):b(board),s(snake)
 {}
@@ -27,23 +26,16 @@ void View::drawBackground(sf::RenderWindow &window) const
 void View::drawSnake(sf::RenderWindow &window) const {
     for(int i=0; i<s.getSnakeSize(); i++)
     {
-       static sf::RectangleShape rect(sf::Vector2f(WIELPOLE-2, WIELPOLE-2));
-        rect.setPosition((WIELPOLE*s.getPosition(i)[0])+MARGINES, WIELPOLE*s.getPosition(i)[1]+GUI);
+        sf::RectangleShape rect(sf::Vector2f(WIELPOLE-4, WIELPOLE-4));
+        rect.setPosition((WIELPOLE*s.getPosition(i)[0])+MARGINES+2, WIELPOLE*s.getPosition(i)[1]+GUI+2);
         rect.setFillColor(sf::Color(73, 173, 26));
         window.draw(rect);
     }
-   // sf::RectangleShape rect(sf::Vector2f(WIELPOLE-2, WIELPOLE-2));
-
-    /*rect.setPosition((WIELPOLE*s.getHeadPosition()[0])+MARGINES, WIELPOLE*s.getHeadPosition()[1]+GUI);
-    rect.setFillColor(sf::Color(73, 173, 26));*/
-
-
-
-}
+ }
 void View::present(sf::RenderWindow &window) const
 {
 
-    window.clear(sf::Color(95, 167, 237));
+    window.clear(sf::Color(135, 191, 239));
     drawBackground(window);
     drawSnake(window);
     window.display();

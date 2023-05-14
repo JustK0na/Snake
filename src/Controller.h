@@ -25,7 +25,7 @@ public:
     Controller(Board &board, SnakeBody &snake);
     void control(sf::RenderWindow &win);
     void movementChange(sf::Event &event);
-    void movement(direction dir);
+    void movement();
     void addPoint(sf::Event &event);
 
 };

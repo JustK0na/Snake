@@ -12,6 +12,10 @@
 #include <SFML/Window/VideoMode.hpp>
 
 #include "iostream"
+
+#define MARGINES 20
+#define  GUI 200
+
 class View {
     Board &b;
     SnakeBody &s;

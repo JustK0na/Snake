@@ -7,22 +7,19 @@
 #include "View.h"
 #include "Controller.h"
 
-#define WIELPOLE 30
-#define MARGINES 20
-#define  GUI 200
-#define FRAMERATE 15
-
 #define SIZE 25
 int main() {
 
     Board b(SIZE, SIZE);
 
-
     SnakeBody s(SIZE/2,SIZE/2);
 
-   // Snake s(SIZE/2,SIZE/2);
     View scenery(b,s);
+
     Controller controller(b, s);
+
+
+
     sf::RenderWindow win(sf::VideoMode(2*MARGINES+b.getCols()*WIELPOLE, b.getRows()*WIELPOLE+MARGINES+GUI), "Snake");
     win.setFramerateLimit(FRAMERATE);
 

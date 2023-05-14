@@ -81,9 +81,9 @@ std::vector<int> SnakeBody::getPosition(int i) const
     std::vector<int> tab{int(body[i].posX), int(body[i].posY)};
     return tab;
 }
-direction SnakeBody::getDirection() const
+direction SnakeBody::getDirection(int i) const
 {
-    return body.front().dir;
+    return body.at(i).dir;
 }
 int SnakeBody::getSnakeSize() const
 {
@@ -91,10 +91,6 @@ int SnakeBody::getSnakeSize() const
 }
 void SnakeBody::changeDirection(char key)
 {
-    for(int i=(body.size()-1); i>0; i--)
-    {
-        body.at(i).dir = body.at(i-1).dir;
-    }
     switch (key) {
         case 'w':
             body.front().dir=UP;
@@ -112,21 +108,22 @@ void SnakeBody::changeDirection(char key)
 }
 void SnakeBody::changeX(float x)
 {
+    body.front().posX=body.front().posX+x;
     for(int i=(body.size()-1); i>0; i--)
     {
-        body.at(i).posX = body.at(i-1).posX;
+        body.at(i).posX = body.at(i-1).posX-x;
     }
-    body.front().posX=body.front().posX+x;
+
 }
 void SnakeBody::changeY(float y)
 {
-
-    for(int i=(body.size()-1); i>0; i--)
+    body.front().posY=body.front().posY+y;
+    for(int j=(body.size()-1); j>0; j--)
     {
-        body.at(i).posY = body.at(i-1).posY;
+        body.at(j).posY = body.at(j-1).posY-y;
     }
 
-    body.front().posY=body.front().posY+y;
+
 }
 bool SnakeBody::outOfBoard() const{
     if (getPosition(0)[0]<0||getPosition(0)[0]>(SIZE-1)||getPosition(0)[1]<0||getPosition(0)[1]>(SIZE-1))
@@ -139,8 +136,8 @@ bool SnakeBody::outOfBoard() const{
 void  SnakeBody::snakeGrow()
 {
     cell bodyPart;
-    bodyPart.posX=body.front().posX;
-    bodyPart.posY=body.front().posY;
+    bodyPart.posX=body.back().posX;
+    bodyPart.posY=body.back().posY;
     body.push_back(bodyPart);
 
 

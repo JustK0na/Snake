@@ -12,18 +12,8 @@
 
 
 
-enum direction{
-    UP,
-    DOWN,
-    LEFT,
-    RIGHT
-};
 
-struct cell{
-    float posX;
-    float posY;
-    direction dir;
-};
+/*
 class Snake {
     float posX;
     float posY;
@@ -38,13 +28,25 @@ public:
     void changeY(float y);
     bool outOfBoard() const;
 };
+*/
+enum direction{
+    UP,
+    DOWN,
+    LEFT,
+    RIGHT
+};
 
+struct cell{
+    float posX;
+    float posY;
+    direction dir;
+};
 class SnakeBody{
     std::vector<cell> body;
 public:
     SnakeBody(int x, int y);
     std::vector<int> getPosition(int i) const;
-    direction getDirection() const;
+    direction getDirection(int i) const;
     int getSnakeSize() const;
     void changeDirection(char key);
     void changeX(float x);
