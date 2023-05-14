@@ -75,6 +75,7 @@ SnakeBody::SnakeBody(int x, int y)
     body.front().posX=x;
     body.front().posY=y;
     body.front().dir=RIGHT;
+    clock = 1;
 }
 std::vector<int> SnakeBody::getPosition(int i) const
 {
@@ -108,21 +109,48 @@ void SnakeBody::changeDirection(char key)
 }
 void SnakeBody::changeX(float x)
 {
-    body.front().posX=body.front().posX+x;
+    int modulusx = sqrt(pow(x,2));
+    if(clock!=FRAMERATE/modulusx)
+    {
+        clock++;
+        return;
+    }
+
+
+
     for(int i=(body.size()-1); i>0; i--)
     {
-        body.at(i).posX = body.at(i-1).posX-x;
+        body.at(i).posX=body.at(i-1).posX;
+        body.at(i).posY=body.at(i-1).posY;
     }
+    body.front().posX=body.front().posX+x/modulusx;
+    clock=1;
 
 }
 void SnakeBody::changeY(float y)
 {
-    body.front().posY=body.front().posY+y;
+    int modulusy = sqrt(pow(y,2));
+    if(clock!=FRAMERATE/modulusy)
+    {
+        clock++;
+        return;
+    }
+    /*
+    body.front().posY=body.front().posY+y/modulusy;
     for(int j=(body.size()-1); j>0; j--)
     {
-        body.at(j).posY = body.at(j-1).posY-y;
+        body.at(j).posY = body.at(j-1).posY-y/modulusy;
+    }*/
+    for(int i=(body.size()-1); i>0; i--)
+    {
+        body.at(i).posX=body.at(i-1).posX;
+        body.at(i).posY=body.at(i-1).posY;
     }
+    body.front().posY=body.front().posY+y/modulusy;
 
+
+
+    clock=1;
 
 }
 bool SnakeBody::outOfBoard() const{
@@ -141,4 +169,13 @@ void  SnakeBody::snakeGrow()
     body.push_back(bodyPart);
 
 
+}
+void SnakeBody::addClock()
+{
+    clock++;
+}
+
+int SnakeBody::getClock() const
+{
+    return clock;
 }

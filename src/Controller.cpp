@@ -38,17 +38,14 @@ void Controller::movementChange(sf::Event &event) {
 }
 void Controller::movement()
 {
-    float wielnapole = WIELNAPOLE;
-    float framerate = FRAMERATE;
-    float VELOCITY =((5)/framerate);//
-    //Wolno zakręcać tylko wtedy gdy waz jest na całkowitym polu,
+    float VELOCITY = 5;
     if(s.outOfBoard())
     {
         return;
     }
-    for(int i=0; i<s.getSnakeSize(); i++)
-    {
-        direction dir = s.getDirection(i);
+   // for(int i=0; i<s.getSnakeSize(); i++)
+    //{
+        direction dir = s.getDirection(0);
         switch (dir) {
             case UP:
                 s.changeY((-VELOCITY));
@@ -65,9 +62,9 @@ void Controller::movement()
 
 
         }
-    }
+   // }
 
-    std::cout<<"\nwasz X: "<<s.getPosition(0)[0]<<"\twasz Y: "<<s.getPosition(0)[1]<<"\tVelocity: "<<VELOCITY;
+    std::cout<<"\nwasz0 X: "<<s.getPosition(0)[0]<<"\twasz0 Y: " <<s.getPosition(0)[1]<<"\twasz1 X: "<<s.getPosition(1)[0]<<"\twasz1 Y: "<<s.getPosition(1)[1];
 }
 
 void Controller::addPoint(sf::Event &event)

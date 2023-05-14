@@ -8,6 +8,8 @@
 #define SIZE 25
 
 #include <vector>
+#include <cmath>
+#define FRAMERATE 15
 
 
 
@@ -37,21 +39,25 @@ enum direction{
 };
 
 struct cell{
-    float posX;
-    float posY;
+    int posX;
+    int posY;
     direction dir;
 };
 class SnakeBody{
     std::vector<cell> body;
+    int clock;
 public:
     SnakeBody(int x, int y);
     std::vector<int> getPosition(int i) const;
     direction getDirection(int i) const;
     int getSnakeSize() const;
+    int getClock() const;
+    bool outOfBoard() const;
     void changeDirection(char key);
     void changeX(float x);
     void changeY(float y);
-    bool outOfBoard() const;
+    void addClock();
+
     void snakeGrow() ;  //!!!!!!!!!!!!!!!!!!!!!!!!!
 };
 
