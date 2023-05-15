@@ -25,6 +25,7 @@ public:
     void present(sf::RenderWindow &window) const;
     void drawBackground(sf::RenderWindow &window) const;
     void drawSnake(sf::RenderWindow &window) const;
+    void drawApples(sf::RenderWindow &window) const;
 };
 
 

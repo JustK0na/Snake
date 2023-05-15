@@ -9,6 +9,19 @@
 
 View::View(Board &board, SnakeBody &snake):b(board),s(snake)
 {}
+void View::drawApples(sf::RenderWindow &window) const
+{
+    sf::RectangleShape rect(sf::Vector2f(WIELPOLE,WIELPOLE));
+    for(signed i=0; i<b.getOrchardSize(); i++)
+    {
+        rect.setPosition(MARGINES+1+WIELPOLE*b.getAppleX(i),GUI+1+WIELPOLE*b.getAppleY(i));
+        rect.setOutlineThickness(2);
+        rect.setOutlineColor(sf::Color(15, 75, 133));
+
+        rect.setFillColor(sf::Color(199, 65, 42));
+        window.draw(rect);
+    }
+}
 void View::drawBackground(sf::RenderWindow &window) const
 {
    sf::RectangleShape rect(sf::Vector2f(WIELPOLE,WIELPOLE));
@@ -44,7 +57,9 @@ void View::present(sf::RenderWindow &window) const
 
     window.clear(sf::Color(135, 191, 239));
     drawBackground(window);
+    drawApples(window);
     drawSnake(window);
+
     window.display();
 
 }

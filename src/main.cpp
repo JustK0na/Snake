@@ -10,6 +10,8 @@
 #define SIZE 25
 int main() {
 
+    srand(time(NULL));
+
     Board b(SIZE, SIZE);
 
     SnakeBody s(SIZE/2,SIZE/2);

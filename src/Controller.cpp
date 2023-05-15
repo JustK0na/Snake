@@ -64,22 +64,30 @@ void Controller::movement()
         }
    // }
 
-    std::cout<<"\nwasz0 X: "<<s.getPosition(0)[0]<<"\twasz0 Y: " <<s.getPosition(0)[1]<<"\twasz1 X: "<<s.getPosition(1)[0]<<"\twasz1 Y: "<<s.getPosition(1)[1];
+    //std::cout<<"\nwasz0 X: "<<s.getPosition(0)[0]<<"\twasz0 Y: " <<s.getPosition(0)[1]<<"\twasz1 X: "<<s.getPosition(1)[0]<<"\twasz1 Y: "<<s.getPosition(1)[1];
 }
 
-void Controller::addPoint(sf::Event &event)
+void Controller::addPoint()
 {
-    switch (event.key.code) {
-        case sf::Keyboard::J :
+    for(signed int i=0; i<b.getOrchardSize(); i++)
+    {
+        if(s.getPosition(0)[0]==b.getAppleX(i)&&s.getPosition(0)[1]==b.getAppleY(i))
+        {
             s.snakeGrow();
-            std::cout<<"\nWielkosc weza: "<<s.getSnakeSize();
-            break;
-        default:
-            break;
+            b.removeApple(i);
+        }
     }
-
 }
-
+void Controller::spawnApple()
+{
+    if(time>=FRAMERATE*7)
+    {
+        b.putApple();
+        time=0;
+        return;
+    }
+    time++;
+}
 void Controller::control(sf::RenderWindow &win)
 {
     sf::Event event;
@@ -92,7 +100,7 @@ void Controller::control(sf::RenderWindow &win)
                 break;
             case sf::Event::KeyPressed:
                 movementChange(event);
-                addPoint(event);
+
                 break;
 
             default:
@@ -101,4 +109,6 @@ void Controller::control(sf::RenderWindow &win)
 
     }
     movement();
+    spawnApple();
+    addPoint();
 }

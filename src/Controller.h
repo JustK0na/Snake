@@ -7,7 +7,7 @@
 
 #define FRAMERATE 15
 #define WIELNAPOLE 30
-
+#define SIZE 25
 
 #include "Board.h"
 #include "Snake.h"
@@ -21,12 +21,14 @@ class Controller {
 
     Board &b;
     SnakeBody &s;
+    int time;
 public:
     Controller(Board &board, SnakeBody &snake);
     void control(sf::RenderWindow &win);
     void movementChange(sf::Event &event);
     void movement();
-    void addPoint(sf::Event &event);
+    void addPoint();
+    void spawnApple();
 
 };
 
