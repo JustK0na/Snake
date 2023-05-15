@@ -10,9 +10,16 @@
 #include <cstdlib>
 #define WIELPOLE 30
 
+enum stage{
+    MENU,
+    GAME,
+    END
+};
+
 class Board {
    int col;
    int row;
+   stage level;
    std::vector<std::vector<int>> orchard;
 
 public:
@@ -25,6 +32,9 @@ public:
     int getOrchardSize() const;
     int getAppleX(int) const ;
     int getAppleY(int) const ;
+    stage getLevel() const;
+    void changeLevel(stage) ;
+
 };
 
 

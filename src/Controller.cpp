@@ -5,7 +5,9 @@
 #include "Controller.h"
 
 Controller::Controller(Board &board, SnakeBody &snake):b(board),s(snake)
-{}
+{
+
+}
 
 void Controller::movementChange(sf::Event &event) {
 
@@ -41,9 +43,15 @@ void Controller::movement()
     float VELOCITY = 5;
     if(s.outOfBoard())
     {
+        b.changeLevel(END);
         return;
     }
     if(checkCollision())
+    {
+        b.changeLevel(END);
+        return;
+    }
+    if(b.getLevel()==MENU||b.getLevel()==END)
     {
         return;
     }
@@ -84,6 +92,10 @@ void Controller::addPoint()
 }
 void Controller::spawnApple()
 {
+    if(b.getLevel()==MENU||b.getLevel()==END)
+    {
+        return;
+    }
     if(time>=FRAMERATE*7)
     {
         b.putApple();
@@ -105,6 +117,20 @@ bool Controller::checkCollision() const
     }
     return false;
 }
+void Controller::clickAnyButton()
+{
+    if (b.getLevel()==GAME)
+        return;
+    else if(b.getLevel()==MENU)
+        b.changeLevel(GAME);
+
+    if(b.getLevel()==END)
+    {
+        b.changeLevel(GAME);
+        s.resetSnake();
+    }
+
+}
 
 void Controller::control(sf::RenderWindow &win)
 {
@@ -118,7 +144,7 @@ void Controller::control(sf::RenderWindow &win)
                 break;
             case sf::Event::KeyPressed:
                 movementChange(event);
-
+                clickAnyButton();
                 break;
 
             default:

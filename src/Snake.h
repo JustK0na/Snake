@@ -9,6 +9,7 @@
 
 #include <vector>
 #include <cmath>
+#include <iostream>
 #define FRAMERATE 15
 
 
@@ -57,6 +58,7 @@ public:
     void changeX(float x);
     void changeY(float y);
     void addClock();
+    void resetSnake();
 
     void snakeGrow() ;  //!!!!!!!!!!!!!!!!!!!!!!!!!
 };

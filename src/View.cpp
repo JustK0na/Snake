@@ -9,6 +9,7 @@
 
 View::View(Board &board, SnakeBody &snake):b(board),s(snake)
 {}
+
 void View::drawApples(sf::RenderWindow &window) const
 {
     sf::RectangleShape rect(sf::Vector2f(WIELPOLE,WIELPOLE));
@@ -52,13 +53,47 @@ void View::drawSnake(sf::RenderWindow &window) const {
         window.draw(rect);
     }
  }
+void View::writeText(sf::RenderWindow &window) const {
+    sf::Font font;
+    sf::Text text;
+    font.loadFromFile("../Graphics/Font/PixelCode.otf");
+    text.setFont(font);
+    text.setCharacterSize(24);
+    if(b.getLevel()==MENU)
+    {
+        text.setString("Press any button to start...");
+        text.setFillColor(sf::Color(11, 135, 87));
+        text.setPosition(MARGINES,GUI-30);
+    }
+    else if(b.getLevel()==END)
+    {
+        text.setString("You crashed :/  press any button to restart..");
+        text.setFillColor(sf::Color(186, 15, 66));
+        text.setPosition(MARGINES,GUI-30);
+    }
+    else if(b.getLevel()==GAME)
+    {
+        text.setCharacterSize(35);
+        text.setString(std::to_string(s.getSnakeSize()));
+        text.setFillColor(sf::Color(0, 31, 184));
+        text.setPosition(MARGINES+SIZE/2*WIELPOLE,GUI/2);
+    }
+
+
+    window.draw(text);
+}
 void View::present(sf::RenderWindow &window) const
 {
 
     window.clear(sf::Color(135, 191, 239));
-    drawBackground(window);
-    drawApples(window);
-    drawSnake(window);
+
+        drawBackground(window);
+        drawApples(window);
+        drawSnake(window);
+        writeText(window);
+
+
+
 
     window.display();
 

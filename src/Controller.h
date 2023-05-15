@@ -17,7 +17,10 @@
 #include <SFML/Window/Event.hpp>
 #include <iostream>
 #include <cmath>
+
+
 class Controller {
+
 
     Board &b;
     SnakeBody &s;
@@ -30,6 +33,7 @@ public:
     void addPoint();
     void spawnApple();
     bool checkCollision() const;
+    void clickAnyButton();
 
 
 };

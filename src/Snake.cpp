@@ -127,6 +127,14 @@ void SnakeBody::changeX(float x)
     clock=1;
 
 }
+void SnakeBody::resetSnake() {
+    body.front().posX = SIZE/2;
+    body.front().posY = SIZE/2;
+    body.front().dir = RIGHT;
+
+    int size = body.size();
+    body.erase(body.begin()+1,body.begin()+size);
+}
 void SnakeBody::changeY(float y)
 {
     int modulusy = sqrt(pow(y,2));
@@ -167,7 +175,6 @@ void  SnakeBody::snakeGrow()
     bodyPart.posX=body.back().posX;
     bodyPart.posY=body.back().posY;
     body.push_back(bodyPart);
-
 
 }
 void SnakeBody::addClock()
