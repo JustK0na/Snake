@@ -29,6 +29,7 @@ public:
     void movement();
     void addPoint();
     void spawnApple();
+    bool checkCollision();
 
 };
 

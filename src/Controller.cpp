@@ -43,6 +43,10 @@ void Controller::movement()
     {
         return;
     }
+    if(checkCollision())
+    {
+        return;
+    }
    // for(int i=0; i<s.getSnakeSize(); i++)
     //{
         direction dir = s.getDirection(0);
@@ -88,6 +92,19 @@ void Controller::spawnApple()
     }
     time++;
 }
+bool Controller::checkCollision()
+{
+    for(int i=2; i<s.getSnakeSize(); i++)//i =2 bo glowa i pierwszy element nigdy nie uderzy
+    {
+        if(s.getPosition(0)[0]==s.getPosition(i)[0]&&s.getPosition(0)[1]==s.getPosition(i)[1])
+        {
+
+            std::cout<<"\nKOLIZJA!!!!";
+            return true;
+        }
+    }
+    return false;
+}
 void Controller::control(sf::RenderWindow &win)
 {
     sf::Event event;
@@ -111,4 +128,5 @@ void Controller::control(sf::RenderWindow &win)
     movement();
     spawnApple();
     addPoint();
+    checkCollision();
 }
