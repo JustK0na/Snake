@@ -92,7 +92,7 @@ void Controller::spawnApple()
     }
     time++;
 }
-bool Controller::checkCollision()
+bool Controller::checkCollision() const
 {
     for(int i=2; i<s.getSnakeSize(); i++)//i =2 bo glowa i pierwszy element nigdy nie uderzy
     {
@@ -105,6 +105,7 @@ bool Controller::checkCollision()
     }
     return false;
 }
+
 void Controller::control(sf::RenderWindow &win)
 {
     sf::Event event;
