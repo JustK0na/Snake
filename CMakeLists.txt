@@ -13,7 +13,6 @@ set(CMAKE_CXX_STANDARD 14)
 # tego brakuje !! To są opcje, których ja sam używam w moich programach
 # te opcje muszą być ZAWSZE włączone
 add_compile_options(-Wall -Wextra)
-
 # chcemy, by nasz kod był w pełni zgodny ze standardem
 add_compile_options(-pedantic)
 
@@ -38,11 +37,8 @@ add_compile_options ( -Wmaybe-uninitialized )
 find_package(SFML 2.5 COMPONENTS graphics audio REQUIRED)
 
 file(GLOB SRC CONFIGURE_DEPENDS src/*.cpp)
-add_executable(Snake ${SRC} src/Board.cpp src/Board.h src/Controller.cpp src/Controller.h src/Snake.cpp src/Snake.h src/View.cpp src/View.h)
+add_executable(Snake ${SRC} )#src/Board.cpp src/Board.h src/Controller.cpp src/Controller.h src/Snake.cpp src/Snake.h src/View.cpp src/View.h)
 
-##add_executable(Minesweeper.cpp ${SRC})
-##add_executable(MSBoardTextView.cpp ${SRC})
-##add_executable(MSTextController.cpp ${SRC})
 
 target_link_libraries(Snake sfml-graphics)
 

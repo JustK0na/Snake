@@ -30,7 +30,7 @@ public:
     void addPoint();
     void spawnApple();
     bool checkCollision() const;
-    
+
 
 };
 
