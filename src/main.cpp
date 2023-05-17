@@ -12,12 +12,18 @@ int main() {
 
     srand(time(NULL));
 
-    Board b(SIZE, SIZE);
+    Board b(SIZE, SIZE), b2(SIZE, SIZE), b3(SIZE, SIZE), b4(SIZE, SIZE),b5(SIZE, SIZE),b6(SIZE, SIZE);
+    std::vector<Board> Cube;
+    Cube.push_back(b);
+    Cube.push_back(b2);
+    Cube.push_back(b3);
+    Cube.push_back(b4);
+    Cube.push_back(b5);
+    Cube.push_back(b6);
 
     SnakeBody s(SIZE/2,SIZE/2);
 
     View scenery(b,s);
-
     Controller controller(b, s);
 
 
