@@ -33,9 +33,9 @@ void View::drawBackground(sf::RenderWindow &window) const
             for (int j = 0; j < b[0].getCols(); ++j) {
                 rect.setPosition(MARGINES + j * WIELPOLE + 1, GUI + i * WIELPOLE + 1);
                 rect.setOutlineThickness(2);
-                rect.setOutlineColor(sf::Color(148, 132, 22));
+                rect.setOutlineColor(sf::Color(70, 70, 70));
 
-                rect.setFillColor(sf::Color(255-board*40, 245-board*10, 176+board*10));
+                rect.setFillColor(sf::Color(0+board*45, 127+board*25, 250-board*45));
                 window.draw(rect);
             }
     }

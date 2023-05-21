@@ -47,6 +47,7 @@ void SnakeBody::resetSnake() {
     body.front().posX = SIZE/2;
     body.front().posY = SIZE/2;
     body.front().dir = RIGHT;
+    body.front().board = 0;
 
     int size = body.size();
     body.erase(body.begin()+1,body.begin()+size);
@@ -102,10 +103,26 @@ void SnakeBody::changeBoard(edge e)
                     body.front().board++;
                     body.front().posX = 0;
                 }
-                else
+                else if(body.front().board==3)
                 {
                     body.front().board = 0;
                     body.front().posX = 0;
+                }
+                else if(body.front().board==4)
+                {
+                    body.front().board = 1;
+                    body.front().posX = SIZE - 1 - body.front().posY;
+                    body.front().posY = 0;
+                    body.front().dir = DOWN;
+
+                }
+                else if(body.front().board==5)
+                {
+                    body.front().board = 1;
+                    body.front().posX = body.front().posY;
+                    body.front().posY = SIZE - 1;
+                    body.front().dir = UP;
+
                 }
             }
             if(e==LEFT_EDGE)
@@ -114,19 +131,122 @@ void SnakeBody::changeBoard(edge e)
                     body.front().board--;
                     body.front().posX = SIZE - 1;
                 }
-                else
+                else if(body.front().board==0)
                 {
                     body.front().board = 3;
                     body.front().posX = SIZE - 1;
                 }
+                else if(body.front().board==4)
+                {
+                    body.front().board = 3;
+                    body.front().posX = body.front().posY;
+                    body.front().posY = 0;
+                    body.front().dir = DOWN;
+
+                }
+                else if(body.front().board==5)
+                {
+                    body.front().board = 3;
+                    body.front().posX = SIZE -1 - body.front().posY;
+                    body.front().posY = SIZE - 1;
+                    body.front().dir = UP;
+
+                }
             }
             if(e==TOP_EDGE)
             {
-                
+                if(body.front().board==0)
+                {
+                    body.front().board=4;
+                    body.front().posY=SIZE-1;
+                }
+                else if(body.front().board==1)
+                {
+                    body.front().board=4;
+                    body.front().posY=(SIZE-1) - body.front().posX;
+                    body.front().posX=SIZE-1;
+                    body.front().dir = LEFT;
+
+                }
+                else if(body.front().board==2)
+                {
+                    body.front().board=4;
+                    body.front().posY=0;
+                    body.front().posX = SIZE - 1 - body.front().posX;
+                    body.front().dir = DOWN;
+
+                }
+                else if(body.front().board==3)
+                {
+                    body.front().board=4;
+                    body.front().posY=0 + body.front().posX;
+                    body.front().posX=0;
+                    body.front().dir = RIGHT;
+
+                }
+                else if(body.front().board==4)
+                {
+                    body.front().board=2;
+                    body.front().posY=0;
+                    body.front().posX= (SIZE - 1) - body.front().posX;
+                    body.front().dir = DOWN;
+
+                }
+                else if(body.front().board==5)
+                {
+                    body.front().board=0;
+                    body.front().posY=SIZE -1;
+                    body.front().posX= (SIZE - 1) - body.front().posX;
+                    body.front().dir = UP;
+
+                }
             }
             if(e==BOTTOM_EDGE)
             {
+                if(body.front().board==0)
+                {
+                    body.front().board=5;
+                    body.front().posY=0;
+                }
+                else if(body.front().board==1)
+                {
+                    body.front().board=5;
+                    body.front().posY= body.front().posX;
+                    body.front().posX=SIZE-1;
+                    body.front().dir = LEFT;
 
+                }
+                else if(body.front().board==2)
+                {
+                    body.front().board=5;
+                    body.front().posY=SIZE-1;
+                    body.front().posX = SIZE - 1 - body.front().posX;
+                    body.front().dir = UP;
+
+                }
+                else if(body.front().board==3)
+                {
+                    body.front().board=0;
+                    body.front().posY=0;
+                    body.front().posX=body.front().posX;
+                    body.front().dir = RIGHT;
+
+                }
+                else if(body.front().board==4)
+                {
+                    body.front().board=0;
+                    body.front().posY=0;
+                    body.front().posX = body.front().posX;
+                    body.front().dir = DOWN;
+
+                }
+                else if(body.front().board==5)
+                {
+                    body.front().board=2;
+                    body.front().posY=SIZE -1;
+                    body.front().posX = SIZE - 1 - body.front().posX;
+                    body.front().dir = UP;
+                }
             }
 }
 edge SnakeBody::outOfBoard() const{

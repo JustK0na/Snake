@@ -56,6 +56,13 @@ void Controller::movement()
         if(s.outOfBoard()==LEFT_EDGE){
             s.changeBoard(LEFT_EDGE);
         }
+        if(s.outOfBoard()==TOP_EDGE){
+            s.changeBoard(TOP_EDGE);
+        }
+        if(s.outOfBoard()==BOTTOM_EDGE){
+            s.changeBoard(BOTTOM_EDGE);
+        }
+
     }
     if(checkCollision())
     {
@@ -83,11 +90,7 @@ void Controller::movement()
 
 
         }
-    std::cout<<"\nBOARD: ";
-    for(unsigned int i = 0; i<s.getSnakeSize(); i++)
-    {
-        std::cout<<s.getPosition(i)[2]<<" ";
-    }
+    
 }
 
 void Controller::addPoint()
