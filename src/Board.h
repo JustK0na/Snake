@@ -13,6 +13,7 @@
 enum stage{
     MENU,
     GAME,
+    CUBE,
     END
 };
 
@@ -34,6 +35,8 @@ public:
     int getAppleY(int) const ;
     stage getLevel() const;
     void changeLevel(stage) ;
+
+    void resetBoard();
 
 };
 

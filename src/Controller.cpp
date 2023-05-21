@@ -4,7 +4,8 @@
 
 #include "Controller.h"
 
-Controller::Controller(Board &board, SnakeBody &snake):b(board),s(snake)
+
+Controller::Controller(std::vector<Board> &board, SnakeBody &snake, View &view):b(board),s(snake),v(view)
 {
 
 }
@@ -40,23 +41,31 @@ void Controller::movementChange(sf::Event &event) {
 }
 void Controller::movement()
 {
-    float VELOCITY = 5;
-    if(s.outOfBoard())
+    float VELOCITY = 7;
+    if(b[0].getLevel()==GAME) {
+        if (s.outOfBoard()!=NO_EDGE) {
+            b[0].changeLevel(END);
+            return;
+        }
+    }
+    else if(b[0].getLevel()==CUBE)
     {
-        b.changeLevel(END);
-        return;
+        if (s.outOfBoard()==RIGHT_EDGE) {
+            s.changeBoard(RIGHT_EDGE);
+        }
+        if(s.outOfBoard()==LEFT_EDGE){
+            s.changeBoard(LEFT_EDGE);
+        }
     }
     if(checkCollision())
     {
-        b.changeLevel(END);
+        b[0].changeLevel(END);
         return;
     }
-    if(b.getLevel()==MENU||b.getLevel()==END)
+    if(b[0].getLevel()==MENU||b[0].getLevel()==END)
     {
         return;
     }
-   // for(int i=0; i<s.getSnakeSize(); i++)
-    //{
         direction dir = s.getDirection(0);
         switch (dir) {
             case UP:
@@ -74,33 +83,49 @@ void Controller::movement()
 
 
         }
-   // }
-
-    //std::cout<<"\nwasz0 X: "<<s.getPosition(0)[0]<<"\twasz0 Y: " <<s.getPosition(0)[1]<<"\twasz1 X: "<<s.getPosition(1)[0]<<"\twasz1 Y: "<<s.getPosition(1)[1];
+    std::cout<<"\nBOARD: ";
+    for(unsigned int i = 0; i<s.getSnakeSize(); i++)
+    {
+        std::cout<<s.getPosition(i)[2]<<" ";
+    }
 }
 
 void Controller::addPoint()
 {
-    for(signed int i=0; i<b.getOrchardSize(); i++)
+    for(signed int i=0; i<b[0].getOrchardSize(); i++)
     {
-        if(s.getPosition(0)[0]==b.getAppleX(i)&&s.getPosition(0)[1]==b.getAppleY(i))
+        if(s.getPosition(0)[0]==b[0].getAppleX(i)&&s.getPosition(0)[1]==b[0].getAppleY(i))
         {
             s.snakeGrow();
-            b.removeApple(i);
+            b[0].removeApple(i);
         }
     }
 }
 void Controller::spawnApple()
 {
-    if(b.getLevel()==MENU||b.getLevel()==END)
+    if(b[0].getLevel()==MENU||b[0].getLevel()==END)
     {
+        time =0;
         return;
     }
-    if(time>=FRAMERATE*7)
+    if(time>=FRAMERATE*5)
     {
-        b.putApple();
-        time=0;
-        return;
+        if(b[0].getLevel()==GAME)
+        {
+            b[0].putApple();
+            time=0;
+            return;
+        }
+        if(b[0].getLevel()==CUBE)
+        {
+            for(unsigned int i=0; i<b.size(); i++)
+            {
+                b.at(i).putApple();
+            }
+            time =0;
+            return;
+        }
+
     }
     time++;
 }
@@ -108,10 +133,8 @@ bool Controller::checkCollision() const
 {
     for(int i=2; i<s.getSnakeSize(); i++)//i =2 bo glowa i pierwszy element nigdy nie uderzy
     {
-        if(s.getPosition(0)[0]==s.getPosition(i)[0]&&s.getPosition(0)[1]==s.getPosition(i)[1])
+        if(s.getPosition(0)[0]==s.getPosition(i)[0]&&s.getPosition(0)[1]==s.getPosition(i)[1]&&s.getPosition(0)[2]==s.getPosition(i)[2])//Pozycja X, Y i plansza
         {
-
-            std::cout<<"\nKOLIZJA!!!!";
             return true;
         }
     }
@@ -119,19 +142,89 @@ bool Controller::checkCollision() const
 }
 void Controller::clickAnyButton()
 {
-    if (b.getLevel()==GAME)
+    if (b[0].getLevel()==GAME)
         return;
-    else if(b.getLevel()==MENU)
-        b.changeLevel(GAME);
+  /*  else if(b[0].getLevel()==MENU)
+        b[0].changeLevel(GAME);*/
 
-    if(b.getLevel()==END)
+    if(b[0].getLevel()==END)
     {
-        b.changeLevel(GAME);
+        b[0].changeLevel(MENU);
         s.resetSnake();
+        for(unsigned int i=0; i<b.size(); i++)
+            b[i].resetBoard();
     }
 
 }
+void Controller::menuClick(sf::Event &event, sf::RenderWindow &win) {
+    if (event.mouseButton.button == sf::Mouse::Left) {
+        if (sf::Mouse::getPosition(win).x > MARGINES + b[0].getCols() / 2 * WIELPOLE - 160 &&
+            sf::Mouse::getPosition(win).x < MARGINES + b[0].getCols() / 2 * WIELPOLE + 180) {
+            if (sf::Mouse::getPosition(win).y > 345 &&
+                sf::Mouse::getPosition(win).y < 402) //Ustalone metoda prób i błędów
+            {
+                std::cout << "\nClassic";
+                b[0].changeLevel(GAME);
+            }
 
+        }
+        if (sf::Mouse::getPosition(win).x > MARGINES + b[0].getCols() / 2 * WIELPOLE - 110 &&
+            sf::Mouse::getPosition(win).x < MARGINES + b[0].getCols() / 2 * WIELPOLE + 140) {
+            if (sf::Mouse::getPosition(win).y > 440 &&
+                sf::Mouse::getPosition(win).y < 500) //Ustalone metoda prób i błędów
+            {
+                std::cout << "\nCube";
+                b[0].changeLevel(CUBE);
+            }
+        }
+        if (sf::Mouse::getPosition(win).x > MARGINES + b[0].getCols() / 2 * WIELPOLE - 85 &&
+            sf::Mouse::getPosition(win).x < MARGINES + b[0].getCols() / 2 * WIELPOLE + 150) {
+            if (sf::Mouse::getPosition(win).y > 750 &&
+                sf::Mouse::getPosition(win).y < 820) //Ustalone metoda prób i błędów
+            {
+                std::cout << "\nExit";
+                win.close();
+            }
+
+        }
+
+    }
+}
+void Controller::menuHighlit(sf::Event &, sf::RenderWindow &win)
+{
+    if(sf::Mouse::getPosition(win).x>MARGINES+b[0].getCols()/2*WIELPOLE-160&&sf::Mouse::getPosition(win).x<MARGINES+b[0].getCols()/2*WIELPOLE+180)
+    {
+        if(sf::Mouse::getPosition(win).y>345&&sf::Mouse::getPosition(win).y<402) //Ustalone metoda prób i błędów
+        {
+            v.Highlight(CLASSICTEXT);
+            std::cout<<"\nHighlight classicText";
+            return;
+        }
+
+    }
+    if (sf::Mouse::getPosition(win).x > MARGINES + b[0].getCols() / 2 * WIELPOLE - 110 &&
+        sf::Mouse::getPosition(win).x < MARGINES + b[0].getCols() / 2 * WIELPOLE + 140) {
+        if (sf::Mouse::getPosition(win).y > 440 &&
+            sf::Mouse::getPosition(win).y < 500) //Ustalone metoda prób i błędów
+        {
+            v.Highlight(CUBETEXT);
+            std::cout<<"\nHighlight CubeText";
+            return;
+        }
+    }
+    if(sf::Mouse::getPosition(win).x>MARGINES+b[0].getCols()/2*WIELPOLE-85 && sf::Mouse::getPosition(win).x<MARGINES+b[0].getCols()/2*WIELPOLE+150)
+    {
+        if(sf::Mouse::getPosition(win).y>750&&sf::Mouse::getPosition(win).y<820) //Ustalone metoda prób i błędów
+        {
+            v.Highlight(EXITTEXT);
+            std::cout<<"\nHighlight ExitText";
+            return;
+        }
+
+    }
+    v.Highlight(NOTHINGTEXT);
+    return;
+}
 void Controller::control(sf::RenderWindow &win)
 {
     sf::Event event;
@@ -146,7 +239,11 @@ void Controller::control(sf::RenderWindow &win)
                 movementChange(event);
                 clickAnyButton();
                 break;
-
+            case sf::Event::MouseButtonPressed:
+                menuClick(event, win);
+                break;
+            case sf::Event::MouseMoved:
+                menuHighlit(event, win);
             default:
                 break;
         }

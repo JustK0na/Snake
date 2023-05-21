@@ -16,17 +16,27 @@
 #define MARGINES 20
 #define  GUI 200
 
+enum Texts {
+    NOTHINGTEXT,
+    CLASSICTEXT,
+    CUBETEXT,
+    EXITTEXT
+};
+
+
 class View {
-    Board &b;
+    std::vector<Board> &b;
     SnakeBody &s;
+    Texts highlight;
 
 public:
-    View(Board &b, SnakeBody &s);
+    View(std::vector<Board> &b, SnakeBody &s);
     void present(sf::RenderWindow &window) const;
     void drawBackground(sf::RenderWindow &window) const;
     void drawSnake(sf::RenderWindow &window) const;
     void drawApples(sf::RenderWindow &window) const;
     void writeText(sf::RenderWindow &) const;
+    void Highlight(Texts);
 };
 
 

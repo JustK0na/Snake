@@ -28,6 +28,9 @@ void Board::changeLevel(stage mode) {
         case GAME:
             level = GAME;
             break;
+        case CUBE:
+            level = CUBE;
+            break;
         case END:
             level = END;
     }
@@ -57,6 +60,13 @@ void Board::putApple() {
         }
 
     }*/
+}
+void Board::resetBoard()
+{
+    for(int i=0; i<getOrchardSize(); i++)
+    {
+        orchard.erase(orchard.begin()+i);
+    }
 }
 void Board::removeApple(int i)
 {

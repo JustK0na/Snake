@@ -38,11 +38,20 @@ enum direction{
     LEFT,
     RIGHT
 };
+enum edge
+{
+    TOP_EDGE,
+    BOTTOM_EDGE,
+    LEFT_EDGE,
+    RIGHT_EDGE,
+    NO_EDGE
+};
 
 struct cell{
     int posX;
     int posY;
     direction dir;
+    int board;
 };
 class SnakeBody{
     std::vector<cell> body;
@@ -53,10 +62,11 @@ public:
     direction getDirection(int i) const;
     int getSnakeSize() const;
     int getClock() const;
-    bool outOfBoard() const;
+    edge outOfBoard() const;
     void changeDirection(char key);
     void changeX(float x);
     void changeY(float y);
+    void changeBoard(edge);
     void addClock();
     void resetSnake();
 

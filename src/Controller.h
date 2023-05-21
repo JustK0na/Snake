@@ -11,6 +11,7 @@
 
 #include "Board.h"
 #include "Snake.h"
+#include "View.h"
 #include <SFML/Graphics.hpp>
 #include <SFML/Graphics/Color.hpp>
 #include <SFML/Window/VideoMode.hpp>
@@ -22,11 +23,12 @@
 class Controller {
 
 
-    Board &b;
+    std::vector<Board> &b;
     SnakeBody &s;
+    View &v;
     int time;
 public:
-    Controller(Board &board, SnakeBody &snake);
+    Controller(std::vector<Board> &board, SnakeBody &snake, View &);
     void control(sf::RenderWindow &win);
     void movementChange(sf::Event &event);
     void movement();
@@ -34,6 +36,8 @@ public:
     void spawnApple();
     bool checkCollision() const;
     void clickAnyButton();
+    void menuClick(sf::Event &,sf::RenderWindow &win);
+    void menuHighlit(sf::Event &,sf::RenderWindow &win);
 
 
 };

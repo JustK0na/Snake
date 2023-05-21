@@ -3,71 +3,6 @@
 //
 
 #include "Snake.h"
-/*
- * ##########################
- * STARY SNAKE JAKO PUNKT  ##
- * ##########################
- *
- */
-
-
-
-/*
-Snake::Snake(int x, int y):posX(x), posY(y)
-{
-    dir = RIGHT;
-}
-direction Snake::getDirection() const
-{
-    return dir;
-}
-void Snake::changeX(float x)
-{
-    posX=posX+x;
-}
-void Snake::changeY(float y)
-{
-    posY=posY+y;
-}
-void Snake::changeDirection(char key)
-{
-    switch (key) {
-        case 'w':
-            dir=UP;
-            break;
-        case 'd':
-            dir=RIGHT;
-            break;
-        case 's':
-            dir=DOWN;
-            break;
-        case 'a':
-            dir=LEFT;
-            break;
-    }
-}
-
-bool Snake::outOfBoard() const{
-    if (getPosition()[0]<0||getPosition()[0]>(SIZE-1)||getPosition()[1]<0||getPosition()[1]>(SIZE-1))
-    {
-        return true;
-    }
-    return false;
-
-}
-
-std::vector<int> Snake::getPosition() const
-{
-    std::vector<int> tab{posX, posY};
-    return tab;
-}*/
-
-/*########################################################
-#                                                        #
-#                   SNAKE VECTOR                         #
-#                                                        #
-##########################################################*/
-
 SnakeBody::SnakeBody(int x, int y)
 {
     cell head;
@@ -75,11 +10,12 @@ SnakeBody::SnakeBody(int x, int y)
     body.front().posX=x;
     body.front().posY=y;
     body.front().dir=RIGHT;
+    body.front().board=0;
     clock = 1;
 }
 std::vector<int> SnakeBody::getPosition(int i) const
 {
-    std::vector<int> tab{int(body[i].posX), int(body[i].posY)};
+    std::vector<int> tab{int(body[i].posX), int(body[i].posY), body[i].board};
     return tab;
 }
 direction SnakeBody::getDirection(int i) const
@@ -107,6 +43,14 @@ void SnakeBody::changeDirection(char key)
             break;
     }
 }
+void SnakeBody::resetSnake() {
+    body.front().posX = SIZE/2;
+    body.front().posY = SIZE/2;
+    body.front().dir = RIGHT;
+
+    int size = body.size();
+    body.erase(body.begin()+1,body.begin()+size);
+}
 void SnakeBody::changeX(float x)
 {
     int modulusx = sqrt(pow(x,2));
@@ -122,18 +66,11 @@ void SnakeBody::changeX(float x)
     {
         body.at(i).posX=body.at(i-1).posX;
         body.at(i).posY=body.at(i-1).posY;
+        body.at(i).board=body.at(i-1).board;
     }
     body.front().posX=body.front().posX+x/modulusx;
     clock=1;
 
-}
-void SnakeBody::resetSnake() {
-    body.front().posX = SIZE/2;
-    body.front().posY = SIZE/2;
-    body.front().dir = RIGHT;
-
-    int size = body.size();
-    body.erase(body.begin()+1,body.begin()+size);
 }
 void SnakeBody::changeY(float y)
 {
@@ -143,16 +80,11 @@ void SnakeBody::changeY(float y)
         clock++;
         return;
     }
-    /*
-    body.front().posY=body.front().posY+y/modulusy;
-    for(int j=(body.size()-1); j>0; j--)
-    {
-        body.at(j).posY = body.at(j-1).posY-y/modulusy;
-    }*/
     for(int i=(body.size()-1); i>0; i--)
     {
         body.at(i).posX=body.at(i-1).posX;
         body.at(i).posY=body.at(i-1).posY;
+        body.at(i).board=body.at(i-1).board;
     }
     body.front().posY=body.front().posY+y/modulusy;
 
@@ -161,12 +93,60 @@ void SnakeBody::changeY(float y)
     clock=1;
 
 }
-bool SnakeBody::outOfBoard() const{
-    if (getPosition(0)[0]<0||getPosition(0)[0]>(SIZE-1)||getPosition(0)[1]<0||getPosition(0)[1]>(SIZE-1))
+void SnakeBody::changeBoard(edge e)
+{
+
+            if(e==RIGHT_EDGE)
+            {
+                if(body.front().board>=0&&body.front().board<3) {
+                    body.front().board++;
+                    body.front().posX = 0;
+                }
+                else
+                {
+                    body.front().board = 0;
+                    body.front().posX = 0;
+                }
+            }
+            if(e==LEFT_EDGE)
+            {
+                if(body.front().board>0&&body.front().board<=3) {
+                    body.front().board--;
+                    body.front().posX = SIZE - 1;
+                }
+                else
+                {
+                    body.front().board = 3;
+                    body.front().posX = SIZE - 1;
+                }
+            }
+            if(e==TOP_EDGE)
+            {
+                
+            }
+            if(e==BOTTOM_EDGE)
+            {
+
+            }
+}
+edge SnakeBody::outOfBoard() const{
+    if (getPosition(0)[0]<0)
     {
-        return true;
+        return LEFT_EDGE;
     }
-    return false;
+    if(getPosition(0)[0]>(SIZE-1))
+    {
+        return RIGHT_EDGE;
+    }
+    if(getPosition(0)[1]<0)
+    {
+        return TOP_EDGE;
+    }
+    if(getPosition(0)[1]>(SIZE-1))
+    {
+        return BOTTOM_EDGE;
+    }
+    return NO_EDGE;
 
 }
 void  SnakeBody::snakeGrow()
@@ -174,6 +154,7 @@ void  SnakeBody::snakeGrow()
     cell bodyPart;
     bodyPart.posX=body.back().posX;
     bodyPart.posY=body.back().posY;
+    bodyPart.board=body.back().board;
     body.push_back(bodyPart);
 
 }

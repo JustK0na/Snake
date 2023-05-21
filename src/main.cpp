@@ -23,8 +23,8 @@ int main() {
 
     SnakeBody s(SIZE/2,SIZE/2);
 
-    View scenery(b,s);
-    Controller controller(b, s);
+    View scenery(Cube,s);
+    Controller controller(Cube, s, scenery);
 
 
 
