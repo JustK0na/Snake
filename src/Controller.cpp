@@ -95,12 +95,13 @@ void Controller::movement()
 
 void Controller::addPoint()
 {
-    for(signed int i=0; i<b[0].getOrchardSize(); i++)
+    int currentBoard = s.getPosition(0)[2];
+    for(signed int i=0; i<b[currentBoard].getOrchardSize(); i++)
     {
-        if(s.getPosition(0)[0]==b[0].getAppleX(i)&&s.getPosition(0)[1]==b[0].getAppleY(i))
+        if(s.getPosition(0)[0]==b[currentBoard].getAppleX(i)&&s.getPosition(0)[1]==b[currentBoard].getAppleY(i))
         {
             s.snakeGrow();
-            b[0].removeApple(i);
+            b[currentBoard].removeApple(i);
         }
     }
 }
@@ -111,25 +112,26 @@ void Controller::spawnApple()
         time =0;
         return;
     }
-    if(time>=FRAMERATE*5)
-    {
+
         if(b[0].getLevel()==GAME)
         {
-            b[0].putApple();
-            time=0;
-            return;
+            if(time>=FRAMERATE*5) {
+                b[0].putApple();
+                time = 0;
+                return;
+            }
         }
         if(b[0].getLevel()==CUBE)
         {
-            for(unsigned int i=0; i<b.size(); i++)
-            {
-                b.at(i).putApple();
+            if(time>=FRAMERATE*2) {
+              //  for (unsigned int j = 0; j < b.size(); j++) {
+                    int i=rand()%b.size();
+                    b.at(i).putApple();
+             //   }
+                time = 0;
+                return;
             }
-            time =0;
-            return;
         }
-
-    }
     time++;
 }
 bool Controller::checkCollision() const

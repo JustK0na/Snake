@@ -226,9 +226,9 @@ void SnakeBody::changeBoard(edge e)
                 }
                 else if(body.front().board==3)
                 {
-                    body.front().board=0;
-                    body.front().posY=0;
-                    body.front().posX=body.front().posX;
+                    body.front().board=5;
+                    body.front().posY=SIZE - 1 - body.front().posX;
+                    body.front().posX=0;
                     body.front().dir = RIGHT;
 
                 }

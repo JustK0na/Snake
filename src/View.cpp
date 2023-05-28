@@ -14,8 +14,10 @@ View::View(std::vector<Board> &board, SnakeBody &snake):b(board),s(snake)
 void View::drawApples(sf::RenderWindow &window) const {
     if (b[0].getLevel() == GAME||b[0].getLevel() == CUBE) {
         sf::RectangleShape rect(sf::Vector2f(WIELPOLE, WIELPOLE));
-        for (signed i = 0; i < b[0].getOrchardSize(); i++) {
-            rect.setPosition(MARGINES  + WIELPOLE * b[0].getAppleX(i), GUI  + WIELPOLE * b[0].getAppleY(i));
+        int currentBoard = s.getPosition(0)[2];
+        std::cout<<"Board: "<<currentBoard<<std::endl;
+        for (signed i = 0; i < b[currentBoard].getOrchardSize(); i++) {
+            rect.setPosition(MARGINES  + WIELPOLE * b[currentBoard].getAppleX(i), GUI  + WIELPOLE * b[currentBoard].getAppleY(i));
             rect.setOutlineThickness(2);
             rect.setOutlineColor(sf::Color(168, 55, 49));
 
@@ -52,7 +54,7 @@ void View::drawSnake(sf::RenderWindow &window) const {
                 rect.setPosition((WIELPOLE * s.getPosition(i)[0]) + MARGINES + 2, WIELPOLE * s.getPosition(i)[1] + GUI + 2);
 
                 if (i == 0)
-                    rect.setFillColor(sf::Color(22, 168, 78));
+                    rect.setFillColor(sf::Color(14, 235, 17));
                 else if (i != 0)
                     rect.setFillColor(sf::Color(81, 245, 143));
                 window.draw(rect);
